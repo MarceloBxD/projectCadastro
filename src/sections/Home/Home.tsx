@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {
   Text,
   Flex,
@@ -6,19 +6,28 @@ import {
   FormControl,
   Button,
   FormHelperText,
-  Img
+  Img,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../../firebaseConfig/firebase";
 import passwordIcon from "../../assets/images/eye.webp";
+import { useApp } from "../../contexts/contextApi";
 
 export const Home = () => {
-  const [isfilled, setIsFilled] = useState<boolean>(false);
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const {
+    isFilled,
+    setIsFilled,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    showPassword,
+    setShowPassword,
+    isLoading,
+    setIsLoading
+  }: any = useApp();
 
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
@@ -53,9 +62,6 @@ export const Home = () => {
         borderRadius="10px"
         height="400px"
       >
-        <Text fontWeight="bold" color="#fff" fontSize="20px">
-          Seja bem-vindo
-        </Text>
         <Text color="#fff" fontWeight="500" fontSize="22px">
           Login
         </Text>
@@ -85,7 +91,13 @@ export const Home = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Senha"
               />
-              <Img cursor='pointer' onClick={() => setShowPassword(!showPassword)} w='25px' objectFit='cover' src={passwordIcon}/>
+              <Img
+                cursor="pointer"
+                onClick={() => setShowPassword(!showPassword)}
+                w="25px"
+                objectFit="cover"
+                src={passwordIcon}
+              />
             </Flex>
             <FormHelperText>
               Insira dados condizentes com o que está sendo pedido.
@@ -100,7 +112,7 @@ export const Home = () => {
               variant="ghost"
               spinnerPlacement="start"
               size="sm"
-              disabled={isfilled === true ? false : true}
+              disabled={isFilled === true ? false : true}
             >
               Logar
             </Button>
