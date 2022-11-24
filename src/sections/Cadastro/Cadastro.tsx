@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Text,
   Flex,
@@ -15,9 +15,6 @@ import { useApp } from "../../contexts/contextApi";
 
 export const Cadastro = () => {
   const {
-    isLoading,
-    setIsLoading,
-    isFilled,
     setIsFilled,
     name,
     setName,
@@ -143,19 +140,16 @@ export const Cadastro = () => {
             </FormHelperText>
             <Button
               type="submit"
-              onClick={() => setIsLoading(true)}
-              isLoading={isLoading === true ? true : false}
-              loadingText="Carregando"
               color="#595FD9"
-              borderColor="#595FD9"
               opacity={isDisable === true ? "0.1" : "1"}
+              _hover={{backgroundColor: "#ccc"}}
+              backgroundColor='transparent'
               variant="ghost"
-              spinnerPlacement="start"
               mt="10px"
               size="sm"
               disabled={isDisable === true ? true : false}
             >
-              Cadatrar
+              {loading ? "Loading..." : 'Entrar'}
             </Button>
           </form>
         </FormControl>

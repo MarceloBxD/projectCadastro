@@ -25,8 +25,6 @@ export const Home = () => {
     setPassword,
     showPassword,
     setShowPassword,
-    isLoading,
-    setIsLoading
   }: any = useApp();
 
   const [createUserWithEmailAndPassword, user, loading, error] =
@@ -34,7 +32,7 @@ export const Home = () => {
 
   const handleSignIn = (e: any) => {
     e.preventDefault();
-
+    
     createUserWithEmailAndPassword(email, password);
   };
 
@@ -104,24 +102,23 @@ export const Home = () => {
             </FormHelperText>
             <Button
               type="submit"
-              onClick={() => setIsLoading(true)}
-              isLoading={isLoading === true ? true : false}
-              loadingText="Carregando"
+              // onClick={() => setIsLoading(true)}
+              _hover={{backgroundColor: "#ccc"}}
               color="#595FD9"
-              borderColor="#595FD9"
+              backgroundColor='transparent'
               variant="ghost"
-              spinnerPlacement="start"
+              // spinnerPlacement="end"
               size="sm"
               disabled={isFilled === true ? false : true}
             >
-              Logar
+              <Text _hover={{transition:'scale(1.1)'}}>{loading ? "Loading..." : 'Entrar'}</Text>
             </Button>
           </form>
         </FormControl>
         <Text color="#fff">Ainda não possui uma conta?</Text>
-        <Text color="#F3E8EE" textDecoration="underline">
-          <Link to="/cadastro">cadastre-se</Link>
-        </Text>
+        
+          <Link to="/cadastro"><Text color="#F3E8EE" _hover={{transform: "translate(5px)", transition: "all 1.2s ease"}} textDecoration="underline">cadastre-se</Text></Link>
+        
       </Flex>
     </Flex>
   );
