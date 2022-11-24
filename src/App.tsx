@@ -1,5 +1,4 @@
 import './App.css'
-import { motion } from 'framer-motion'
 import { Routes } from './sections/Routes/Routes'
 import { Flex } from '@chakra-ui/react'
 

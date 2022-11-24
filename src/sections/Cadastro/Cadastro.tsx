@@ -6,8 +6,11 @@ import {
   Button,
   FormControl,
   FormHelperText,
+  FormErrorMessage
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import { auth } from "../../firebaseConfig/firebase";
 
 export const Cadastro = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -16,6 +19,7 @@ export const Cadastro = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [isDisable, setIsDisable] = useState<boolean>(true)
 
   const analyzingIsFilled = () => {
     if (name && email && password && confirmPassword) {
@@ -25,17 +29,45 @@ export const Cadastro = () => {
     }
   };
 
-  const sendData = () => {
-    alert("Data");
-  };
+  const [
+    createUserWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useCreateUserWithEmailAndPassword(auth)
+
+  const handleCadaster = (e: any) => {
+    e.preventDefault();
+
+    createUserWithEmailAndPassword(email, password)
+  }
+
+  const analyzingPasswordIsEqual = () => {
+    if(password === confirmPassword){
+        console.log("As senhas são iguais")
+    }
+    else{
+        console.log("As senhão não batem!")
+    }
+  }
 
   useEffect(() => {
     analyzingIsFilled();
+    if(password && confirmPassword){
+        analyzingPasswordIsEqual();
+        if(password === confirmPassword){
+            setIsDisable(false)
+        }
+        else{
+            setIsDisable(true)
+        }
+    }
   }, [name, email, password, confirmPassword]);
 
   return (
     <Flex>
       <Flex
+        justify='center'
         gap="10px"
         flexDir="column"
         align="center"
@@ -44,10 +76,11 @@ export const Cadastro = () => {
         borderRadius="10px"
         height="400px"
       >
-        <Text mt='15px' color="#FFF" fontWeight="bold" fontSize="22px">
+        <Text color="#FFF" fontWeight="bold" fontSize="22px">
           Cadastro
         </Text>
-        <FormControl gap='10px' display='flex' flexDir='column' onSubmit={sendData} padding="20px">
+        <FormControl display='flex' flexDir='column' padding="20px">
+            <form onSubmit={handleCadaster} style={{gap:'12px', display: "flex", flexDirection: "column", justifyContent: "center"}}>
           <Input
             type="text"
             color="#FFF"
@@ -88,25 +121,29 @@ export const Cadastro = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Confirmar senha"
           />
+          {password !== confirmPassword ? (<FormErrorMessage>As senhas não batem!</FormErrorMessage>) : ''}
           <FormHelperText>
             Insira dados condizentes com o que está sendo pedido.
           </FormHelperText>
           <Button
+            type="submit"
             onClick={() => setIsLoading(true)}
             isLoading={isLoading === true ? true : false}
             loadingText="Carregando"
             color="#595FD9"
             borderColor="#595FD9"
+            opacity={isDisable === true ? '0.1' : '1'}
             variant="ghost"
             spinnerPlacement="start"
             mt="10px"
             size="sm"
-            disabled={isfilled === true ? false : true}
+            disabled={isDisable === true ? true : false}
           >
             Cadatrar
           </Button>
+          </form>
         </FormControl>
-        <Text mt='-20px' color="#F3E8EE" textDecoration="underline">
+        <Text fontSize='14px' mt='-20px' color="#F3E8EE" textDecoration="underline">
           <Link to="/">Fazer Login</Link>
         </Text>
       </Flex>

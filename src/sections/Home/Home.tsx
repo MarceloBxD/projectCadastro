@@ -8,15 +8,27 @@ import {
   FormHelperText,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import eyeIcon from "../../assets/images/eye.webp";
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import { auth } from "../../firebaseConfig/firebase";
 
 export const Home = () => {
-  const [show, setShow] = useState<boolean>(false);
-  const [isActive, setIsActive] = useState<boolean>(false);
   const [isfilled, setIsFilled] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const [
+    createUserWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useCreateUserWithEmailAndPassword(auth)
+
+  const handleSignIn = (e: any) => {
+    e.preventDefault();
+
+    createUserWithEmailAndPassword(email, password)
+  }
 
   const analyzingIsFilled = () => {
     if (email && password) {
@@ -35,19 +47,21 @@ export const Home = () => {
       <Flex
         gap="10px"
         flexDir="column"
+        justify='center'
         align="center"
         w="350px"
         bgColor="#161712"
         borderRadius="10px"
         height="400px"
       >
-        <Text fontWeight="bold" mt="15px" color="#fff" fontSize="20px">
+        <Text fontWeight="bold" color="#fff" fontSize="20px">
           Seja bem-vindo
         </Text>
         <Text color="#fff" fontWeight="500" fontSize="22px">
           Login
         </Text>
-        <FormControl gap="10px" display="flex" flexDir="column" padding="20px">
+        <FormControl gap='10px' padding='20px'>
+        <form style={{display: 'flex', flexDirection: 'column', gap: '10px'}} onSubmit={handleSignIn}>
           <Input
             type="email"
             color="#fff"
@@ -72,6 +86,7 @@ export const Home = () => {
             Insira dados condizentes com o que está sendo pedido.
           </FormHelperText>
           <Button
+            type='submit'
             onClick={() => setIsLoading(true)}
             isLoading={isLoading === true ? true : false}
             loadingText="Carregando"
@@ -84,6 +99,7 @@ export const Home = () => {
           >
             Logar
           </Button>
+          </form>
         </FormControl>
         <Text color="#fff">
           Ainda não possui uma conta?
