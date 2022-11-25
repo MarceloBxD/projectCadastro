@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   Text,
   Flex,
@@ -47,6 +47,10 @@ export const Cadastro = () => {
     setEmail("")
     setPassword("")
     setConfirmPassword("")
+
+    if(error){
+      console.error(error)
+    }
   };
 
 
@@ -159,7 +163,7 @@ export const Cadastro = () => {
               {loading ? "Loading..." : 'Finalizar Cadastro'}
             </Button>
             {user ? <Text color="#0F0" fontSize='13px' textAlign='center'>Cadastro feito com sucesso!</Text> : ""}
-            {error ? <Text color="#F00" textAlign='center' fontSize='13px'>Erro ao tentar cadastrar!</Text> : ""}
+            {error ? <Text color="#F00" textAlign='center' fontSize='13px'>Erro ao se cadastrar!</Text> : ""}
           </form>
         </FormControl>
         <Text

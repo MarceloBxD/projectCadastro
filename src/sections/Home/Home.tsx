@@ -8,13 +8,15 @@ import {
   FormHelperText,
   Img,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../../firebaseConfig/firebase";
 import passwordIcon from "../../assets/images/eye.webp";
 import { useApp } from "../../contexts/contextApi";
 
 export const Home = () => {
+
+  const navigate = useNavigate()
 
   const {
     isFilled,
@@ -26,14 +28,18 @@ export const Home = () => {
     showPassword,
     setShowPassword,
   }: any = useApp();
-  
+
   const [signInWithEmailAndPassword, user, loading, error] =
-  useSignInWithEmailAndPassword(auth);
+    useSignInWithEmailAndPassword(auth);
 
   const handleSignIn = (e: any) => {
     e.preventDefault();
-    
+
     signInWithEmailAndPassword(email, password);
+
+    if(!error){
+      navigate("/afterLogin")
+    }
   };
 
   const analyzingIsFilled = () => {
@@ -57,7 +63,7 @@ export const Home = () => {
         align="center"
         w="350px"
         bgColor="#161712"
-        boxShadow='6px 6px 12px #000'
+        boxShadow="6px 6px 12px #000"
         borderRadius="10px"
         height="400px"
       >
@@ -103,22 +109,47 @@ export const Home = () => {
             </FormHelperText>
             <Button
               type="submit"
-              _hover={{backgroundColor: "#ccc"}}
+              _hover={{ backgroundColor: "#ccc" }}
               color="#595FD9"
-              backgroundColor='transparent'
+              backgroundColor="transparent"
               variant="ghost"
               size="sm"
               disabled={isFilled === true ? false : true}
             >
-              <Text _hover={{transition:'scale(1.1)'}}>{loading ? "Loading..." : 'Entrar'}</Text>
+              <Text _hover={{ transition: "scale(1.1)" }}>
+                {loading ? "Loading..." : "Entrar"}
+              </Text>
             </Button>
-            {user ? <Text color="#0F0" textAlign='center' fontSize='13px'>Login feito com sucesso!</Text> : <Text></Text>}
-            {error ? <Text color="#F00" fontSize='13px' textAlign='center'>Você ainda não possui um cadastro com a gente, tente criar uma conta!</Text> : ""}
+            {user ? (
+              <Text fontSize="13px" color="#0f0" textAlign="center">
+                Seja bem-vindo!
+              </Text>
+            ) : (
+              ""
+            )}
+            {error ? (
+              <Text color="#F00" fontSize="13px" textAlign="center">
+                Você ainda não possui um cadastro com a gente, tente criar uma
+                conta!
+              </Text>
+            ) : (
+              ""
+            )}
           </form>
         </FormControl>
         <Text color="#fff">Ainda não possui uma conta?</Text>
-        <Link to="/cadastro"><Text color="#F3E8EE" _hover={{transform: "translate(5px)", transition: "all 1.2s ease"}} textDecoration="underline">cadastre-se</Text></Link>
-        
+        <Link to="/cadastro">
+          <Text
+            color="#F3E8EE"
+            _hover={{
+              transform: "translate(5px)",
+              transition: "all 1.2s ease",
+            }}
+            textDecoration="underline"
+          >
+            cadastre-se
+          </Text>
+        </Link>
       </Flex>
     </Flex>
   );
