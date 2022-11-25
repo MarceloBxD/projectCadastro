@@ -1,8 +1,10 @@
-import React from "react";
 import { Avatar, Flex, Text } from "@chakra-ui/react";
 import { useApp } from "../../contexts/contextApi";
 
 export const AfterLogin = () => {
+
+  const { name }: any = useApp()
+
   return (
     <Flex w="100%" h="100%" bgColor="#fff">
       <Flex
@@ -15,7 +17,7 @@ export const AfterLogin = () => {
         padding='15px'
       >
         <Text fontSize="18px" color="#FFF">
-          Bem-vindo!
+          Bem-vindo {name}!
         </Text>
         <Avatar
           src={

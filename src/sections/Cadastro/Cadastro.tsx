@@ -43,10 +43,6 @@ export const Cadastro = () => {
     e.preventDefault();
 
     createUserWithEmailAndPassword(email, password);
-    setName("")
-    setEmail("")
-    setPassword("")
-    setConfirmPassword("")
 
     if(error){
       console.error(error)
