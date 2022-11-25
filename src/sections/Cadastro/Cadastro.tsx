@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Text,
   Flex,
@@ -28,6 +28,8 @@ export const Cadastro = () => {
     setIsDisable,
   }: any = useApp();
 
+  const [userData, setUserData] = useState({})
+
   const analyzingIsFilled = () => {
     if (name && email && password && confirmPassword) {
       setIsFilled(true);
@@ -43,7 +45,13 @@ export const Cadastro = () => {
     e.preventDefault();
 
     createUserWithEmailAndPassword(email, password);
+    // setUserData()
+    setName("")
+    setEmail("")
+    setPassword("")
+    setConfirmPassword("")
   };
+
 
   const analyzingPasswordIsEqual = () => {
     if (password === confirmPassword) {
@@ -63,7 +71,7 @@ export const Cadastro = () => {
         setIsDisable(true);
       }
     }
-  }, [name, email, password, confirmPassword]);
+  }, [name, email, password, confirmPassword, user]);
 
   return (
     <Flex>
@@ -149,7 +157,7 @@ export const Cadastro = () => {
               size="sm"
               disabled={isDisable === true ? true : false}
             >
-              {loading ? "Loading..." : 'Entrar'}
+              {loading ? "Loading..." : 'Finalizar Cadastro'}
             </Button>
           </form>
         </FormControl>

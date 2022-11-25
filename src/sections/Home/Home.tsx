@@ -9,7 +9,7 @@ import {
   Img,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../../firebaseConfig/firebase";
 import passwordIcon from "../../assets/images/eye.webp";
 import { useApp } from "../../contexts/contextApi";
@@ -27,14 +27,16 @@ export const Home = () => {
     setShowPassword,
   }: any = useApp();
 
-  const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+  const [signInWithEmailAndPassword, user, loading, error] =
+  useSignInWithEmailAndPassword(auth);
 
   const handleSignIn = (e: any) => {
     e.preventDefault();
     
-    createUserWithEmailAndPassword(email, password);
+    signInWithEmailAndPassword(email, password);
   };
+
+  console.log(user)
 
   const analyzingIsFilled = () => {
     if (email && password) {
