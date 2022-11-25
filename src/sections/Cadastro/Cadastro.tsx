@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Text,
   Flex,
@@ -79,6 +79,7 @@ export const Cadastro = () => {
         align="center"
         w="350px"
         bgColor="#161712"
+        boxShadow='6px 6px 12px #000'
         borderRadius="10px"
         height="400px"
       >
@@ -158,7 +159,7 @@ export const Cadastro = () => {
               {loading ? "Loading..." : 'Finalizar Cadastro'}
             </Button>
             {user ? <Text color="#0F0" fontSize='13px' textAlign='center'>Cadastro feito com sucesso!</Text> : ""}
-            {error ? <Text>Erro ao tentar cadastrar!</Text> : ""}
+            {error ? <Text color="#F00" textAlign='center' fontSize='13px'>Erro ao tentar cadastrar!</Text> : ""}
           </form>
         </FormControl>
         <Text
@@ -167,7 +168,7 @@ export const Cadastro = () => {
           color="#F3E8EE"
           textDecoration="underline"
         >
-          <Link to="/">Fazer Login</Link>
+          <Link to="/"><Text color="#F3E8EE" _hover={{transform: "translate(5px)", transition: "all 1.2s ease"}}>Fazer Login</Text></Link>
         </Text>
       </Flex>
     </Flex>

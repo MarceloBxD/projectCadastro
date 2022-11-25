@@ -57,6 +57,7 @@ export const Home = () => {
         align="center"
         w="350px"
         bgColor="#161712"
+        boxShadow='6px 6px 12px #000'
         borderRadius="10px"
         height="400px"
       >
@@ -102,12 +103,10 @@ export const Home = () => {
             </FormHelperText>
             <Button
               type="submit"
-              // onClick={() => setIsLoading(true)}
               _hover={{backgroundColor: "#ccc"}}
               color="#595FD9"
               backgroundColor='transparent'
               variant="ghost"
-              // spinnerPlacement="end"
               size="sm"
               disabled={isFilled === true ? false : true}
             >
@@ -118,8 +117,7 @@ export const Home = () => {
           </form>
         </FormControl>
         <Text color="#fff">Ainda não possui uma conta?</Text>
-        
-          <Link to="/cadastro"><Text color="#F3E8EE" _hover={{transform: "translate(5px)", transition: "all 1.2s ease"}} textDecoration="underline">cadastre-se</Text></Link>
+        <Link to="/cadastro"><Text color="#F3E8EE" _hover={{transform: "translate(5px)", transition: "all 1.2s ease"}} textDecoration="underline">cadastre-se</Text></Link>
         
       </Flex>
     </Flex>
