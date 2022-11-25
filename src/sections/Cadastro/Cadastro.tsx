@@ -28,8 +28,6 @@ export const Cadastro = () => {
     setIsDisable,
   }: any = useApp();
 
-  const [userData, setUserData] = useState({})
-
   const analyzingIsFilled = () => {
     if (name && email && password && confirmPassword) {
       setIsFilled(true);
@@ -45,7 +43,6 @@ export const Cadastro = () => {
     e.preventDefault();
 
     createUserWithEmailAndPassword(email, password);
-    // setUserData()
     setName("")
     setEmail("")
     setPassword("")
@@ -71,7 +68,7 @@ export const Cadastro = () => {
         setIsDisable(true);
       }
     }
-  }, [name, email, password, confirmPassword, user]);
+  }, [name, email, password, confirmPassword]);
 
   return (
     <Flex>
@@ -85,17 +82,18 @@ export const Cadastro = () => {
         borderRadius="10px"
         height="400px"
       >
-        <Text color="#FFF" fontWeight="bold" fontSize="22px">
+        <Text mt='10px' mb='10px' color="#FFF" fontWeight="bold" fontSize="22px">
           Cadastro
         </Text>
         <FormControl display="flex" flexDir="column" padding="20px">
           <form
             onSubmit={handleCadaster}
             style={{
-              gap: "12px",
+              gap: "8px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
+              marginTop:'-30px',
             }}
           >
             <Input
@@ -159,11 +157,13 @@ export const Cadastro = () => {
             >
               {loading ? "Loading..." : 'Finalizar Cadastro'}
             </Button>
+            {user ? <Text color="#0F0" fontSize='13px' textAlign='center'>Cadastro feito com sucesso!</Text> : ""}
+            {error ? <Text>Erro ao tentar cadastrar!</Text> : ""}
           </form>
         </FormControl>
         <Text
           fontSize="14px"
-          mt="-20px"
+          mt='-20px'
           color="#F3E8EE"
           textDecoration="underline"
         >

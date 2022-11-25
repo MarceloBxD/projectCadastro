@@ -26,7 +26,7 @@ export const Home = () => {
     showPassword,
     setShowPassword,
   }: any = useApp();
-
+  
   const [signInWithEmailAndPassword, user, loading, error] =
   useSignInWithEmailAndPassword(auth);
 
@@ -35,8 +35,6 @@ export const Home = () => {
     
     signInWithEmailAndPassword(email, password);
   };
-
-  console.log(user)
 
   const analyzingIsFilled = () => {
     if (email && password) {
@@ -115,6 +113,8 @@ export const Home = () => {
             >
               <Text _hover={{transition:'scale(1.1)'}}>{loading ? "Loading..." : 'Entrar'}</Text>
             </Button>
+            {user ? <Text color="#0F0" textAlign='center' fontSize='13px'>Login feito com sucesso!</Text> : <Text></Text>}
+            {error ? <Text color="#F00" fontSize='13px' textAlign='center'>Você ainda não possui um cadastro com a gente, tente criar uma conta!</Text> : ""}
           </form>
         </FormControl>
         <Text color="#fff">Ainda não possui uma conta?</Text>
