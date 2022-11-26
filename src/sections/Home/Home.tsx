@@ -27,6 +27,8 @@ export const Home = () => {
     setPassword,
     showPassword,
     setShowPassword,
+    userValid,
+    setUserValid
   }: any = useApp();
 
   const [signInWithEmailAndPassword, user, loading, error] =
@@ -37,8 +39,8 @@ export const Home = () => {
 
     signInWithEmailAndPassword(email, password);
     
-    if(error){
-      console.log(error.code)
+    if(userValid){
+      navigate("/AfterLogin")
     }
   };
 
@@ -121,13 +123,7 @@ export const Home = () => {
                 {loading ? "Loading..." : "Entrar"}
               </Text>
             </Button>
-            {user ? (
-              <Text fontSize="13px" color="#0f0" textAlign="center">
-                Seja bem-vindo!
-              </Text>
-            ) : (
-              ""
-            )}
+            {user ? setUserValid(true) : setUserValid(false)}
             {error?.code === "auth/wrong-password" ? (
               <Text textAlign="center" fontSize="13px" color="#F00">
                 Senha incorreta!
@@ -144,6 +140,7 @@ export const Home = () => {
             ) : (
               ""
             )}
+            {error?.code === "auth/user-not-found" ?  <Text textAlign="center" fontSize="13px" color="#F00">Esse usuário não pertence ao nosso banco de dados, crie uma conta!</Text> : ""}
           </form>
         </FormControl>
         <Text color="#fff">Ainda não possui uma conta?</Text>

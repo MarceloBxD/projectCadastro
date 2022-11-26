@@ -19,6 +19,8 @@ export interface iContext{
     setConfirmPassword: React.Dispatch<React.SetStateAction<string>>
     isDisable: boolean
     setIsDisable: React.Dispatch<React.SetStateAction<boolean>>
+    userValid: boolean
+    setUserValid: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export function AppProvider({ children }: any) {
@@ -30,7 +32,8 @@ export function AppProvider({ children }: any) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [name, setName] = useState<string>("");
-    const [isDisable, setIsDisable] = useState<boolean>(true)
+    const [isDisable, setIsDisable] = useState<boolean>(true);
+    const [userValid, setUserValid] = useState<boolean>(false);
 
 
 
@@ -51,7 +54,9 @@ export function AppProvider({ children }: any) {
         confirmPassword,
         setConfirmPassword,
         isDisable,
-        setIsDisable
+        setIsDisable,
+        userValid,
+        setUserValid,
     }
 
     return (
