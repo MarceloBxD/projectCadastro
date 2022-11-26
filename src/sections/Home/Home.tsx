@@ -7,6 +7,7 @@ import {
   Button,
   FormHelperText,
   Img,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
@@ -15,8 +16,7 @@ import passwordIcon from "../../assets/images/eye.webp";
 import { useApp } from "../../contexts/contextApi";
 
 export const Home = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const {
     isFilled,
@@ -36,9 +36,9 @@ export const Home = () => {
     e.preventDefault();
 
     signInWithEmailAndPassword(email, password);
-
-    if(!error){
-      navigate("/afterLogin")
+    
+    if(error){
+      console.log(error.code)
     }
   };
 
@@ -110,6 +110,7 @@ export const Home = () => {
             <Button
               type="submit"
               _hover={{ backgroundColor: "#ccc" }}
+              spinnerPlacement="start"
               color="#595FD9"
               backgroundColor="transparent"
               variant="ghost"
@@ -127,10 +128,18 @@ export const Home = () => {
             ) : (
               ""
             )}
-            {error ? (
-              <Text color="#F00" fontSize="13px" textAlign="center">
-                Você ainda não possui um cadastro com a gente, tente criar uma
-                conta!
+            {error?.code === "auth/wrong-password" ? (
+              <Text textAlign="center" fontSize="13px" color="#F00">
+                Senha incorreta!
+              </Text>
+            ) : (
+              ""
+            )}
+            {error?.code === "auth/too-many-requests" ? (
+              <Text textAlign="center" fontSize="13px" color="#F00">
+                Conta temporariamente desativada devido a quantidade de erros
+                envolvendo a senha. Você pode resolver isso facilmente trocando
+                sua senha.
               </Text>
             ) : (
               ""

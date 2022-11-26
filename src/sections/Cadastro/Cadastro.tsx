@@ -45,16 +45,18 @@ export const Cadastro = () => {
     createUserWithEmailAndPassword(email, password);
 
     if(error){
-      console.error(error)
+      console.log('Erro '+ error.code)
     }
   };
 
 
   const analyzingPasswordIsEqual = () => {
     if (password === confirmPassword) {
-      console.log("As senhas são iguais");
+      return ""
     } else {
-      console.log("As senhão não batem!");
+      return (
+      <FormErrorMessage fontSize='13px' textAlign='center' color="#F00">As senhas precisam ser iguais!</FormErrorMessage>
+      )
     }
   };
 
@@ -137,16 +139,13 @@ export const Cadastro = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Confirmar senha"
             />
-            {password !== confirmPassword ? (
-              <FormErrorMessage>As senhas não batem!</FormErrorMessage>
-            ) : (
-              ""
-            )}
             <FormHelperText>
               Insira dados condizentes com o que está sendo pedido.
             </FormHelperText>
             <Button
               type="submit"
+              isLoading = { loading ? true : false}
+              loadingText="submiting..."
               color="#595FD9"
               opacity={isDisable === true ? "0.1" : "1"}
               _hover={{backgroundColor: "#ccc"}}
@@ -159,7 +158,7 @@ export const Cadastro = () => {
               {loading ? "Loading..." : 'Finalizar Cadastro'}
             </Button>
             {user ? <Text color="#0F0" fontSize='13px' textAlign='center'>Cadastro feito com sucesso!</Text> : ""}
-            {error ? <Text color="#F00" textAlign='center' fontSize='13px'>Erro ao se cadastrar!</Text> : ""}
+            {error?.code === 'auth/weak-password' ? <Text color="#F00" textAlign='center' fontSize='13px'>A senha precisa ter no mínimo 6 caracteres!</Text> : ""}
           </form>
         </FormControl>
         <Text
