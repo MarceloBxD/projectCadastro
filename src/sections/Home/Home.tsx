@@ -7,7 +7,6 @@ import {
   Button,
   FormHelperText,
   Img,
-  FormErrorMessage,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
@@ -28,7 +27,7 @@ export const Home = () => {
     showPassword,
     setShowPassword,
     userValid,
-    setUserValid
+    setUserValid,
   }: any = useApp();
 
   const [signInWithEmailAndPassword, user, loading, error] =
@@ -38,9 +37,9 @@ export const Home = () => {
     e.preventDefault();
 
     signInWithEmailAndPassword(email, password);
-    
-    if(userValid){
-      navigate("/AfterLogin")
+
+    if (userValid) {
+      navigate("/AfterLogin");
     }
   };
 
@@ -140,7 +139,14 @@ export const Home = () => {
             ) : (
               ""
             )}
-            {error?.code === "auth/user-not-found" ?  <Text textAlign="center" fontSize="13px" color="#F00">Esse usuário não pertence ao nosso banco de dados, crie uma conta!</Text> : ""}
+            {error?.code === "auth/user-not-found" ? (
+              <Text textAlign="center" fontSize="13px" color="#F00">
+                Esse usuário não pertence ao nosso banco de dados, crie uma
+                conta!
+              </Text>
+            ) : (
+              ""
+            )}
           </form>
         </FormControl>
         <Text color="#fff">Ainda não possui uma conta?</Text>
