@@ -44,19 +44,20 @@ export const Cadastro = () => {
 
     createUserWithEmailAndPassword(email, password);
 
-    if(error){
-      console.log('Erro '+ error.code)
+    if (error) {
+      console.log("Erro " + error.code);
     }
   };
 
-
   const analyzingPasswordIsEqual = () => {
     if (password === confirmPassword) {
-      return ""
+      return "";
     } else {
       return (
-      <FormErrorMessage fontSize='13px' textAlign='center' color="#F00">As senhas precisam ser iguais!</FormErrorMessage>
-      )
+        <FormErrorMessage fontSize="13px" textAlign="center" color="#F00">
+          As senhas precisam ser iguais!
+        </FormErrorMessage>
+      );
     }
   };
 
@@ -81,11 +82,17 @@ export const Cadastro = () => {
         align="center"
         w="350px"
         bgColor="#161712"
-        boxShadow='6px 6px 12px #000'
+        boxShadow="6px 6px 12px #000"
         borderRadius="10px"
         height="400px"
       >
-        <Text mt='10px' mb='10px' color="#FFF" fontWeight="bold" fontSize="22px">
+        <Text
+          mt="10px"
+          mb="10px"
+          color="#FFF"
+          fontWeight="bold"
+          fontSize="22px"
+        >
           Cadastro
         </Text>
         <FormControl display="flex" flexDir="column" padding="20px">
@@ -96,7 +103,7 @@ export const Cadastro = () => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              marginTop:'-30px',
+              marginTop: "-30px",
             }}
           >
             <Input
@@ -106,7 +113,7 @@ export const Cadastro = () => {
               w="300px"
               variant="flushed"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e: any) => setName(e.target.value)}
               placeholder="Nome"
             />
             <Input
@@ -117,7 +124,7 @@ export const Cadastro = () => {
               w="300px"
               value={email}
               placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: any) => setEmail(e.target.value)}
             />
             <Input
               type="password"
@@ -126,7 +133,7 @@ export const Cadastro = () => {
               variant="flushed"
               w="300px"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e: any) => setPassword(e.target.value)}
               placeholder="Senha"
             />
             <Input
@@ -136,7 +143,7 @@ export const Cadastro = () => {
               variant="flushed"
               value={confirmPassword}
               w="300px"
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={(e: any) => setConfirmPassword(e.target.value)}
               placeholder="Confirmar senha"
             />
             <FormHelperText>
@@ -144,30 +151,52 @@ export const Cadastro = () => {
             </FormHelperText>
             <Button
               type="submit"
-              isLoading = { loading ? true : false}
+              isLoading={loading ? true : false}
               loadingText="submiting..."
               color="#595FD9"
               opacity={isDisable === true ? "0.1" : "1"}
-              _hover={{backgroundColor: "#ccc"}}
-              backgroundColor='transparent'
+              _hover={{ backgroundColor: "#ccc" }}
+              backgroundColor="transparent"
               variant="ghost"
               mt="10px"
               size="sm"
               disabled={isDisable === true ? true : false}
             >
-              {loading ? "Loading..." : 'Finalizar Cadastro'}
+              {loading ? "Loading..." : "Finalizar Cadastro"}
             </Button>
-            {user ? <Text color="#0F0" fontSize='13px' textAlign='center'>Cadastro feito com sucesso!</Text> : ""}
-            {error?.code === 'auth/weak-password' ? <Text color="#F00" textAlign='center' fontSize='13px'>A senha precisa ter no mínimo 6 caracteres!</Text> : ""}
+            {user ? (
+              <Text color="#0F0" fontSize="13px" textAlign="center">
+                Cadastro feito com sucesso!
+              </Text>
+            ) : (
+              ""
+            )}
+            {error?.code === "auth/weak-password" ? (
+              <Text color="#F00" textAlign="center" fontSize="13px">
+                A senha precisa ter no mínimo 6 caracteres!
+              </Text>
+            ) : (
+              ""
+            )}
           </form>
         </FormControl>
         <Text
           fontSize="14px"
-          mt='-20px'
+          mt="-20px"
           color="#F3E8EE"
           textDecoration="underline"
         >
-          <Link to="/"><Text color="#F3E8EE" _hover={{transform: "translate(5px)", transition: "all 1.2s ease"}}>Fazer Login</Text></Link>
+          <Link to="/">
+            <Text
+              color="#F3E8EE"
+              _hover={{
+                transform: "translate(5px)",
+                transition: "all 1.2s ease",
+              }}
+            >
+              Fazer Login
+            </Text>
+          </Link>
         </Text>
       </Flex>
     </Flex>

@@ -1,10 +1,21 @@
-import { Flex, Img } from '@chakra-ui/react'
-import ReactImg from '../../../../assets/images/react.png'
+import { Flex } from "@chakra-ui/react";
+import bgImg from "../../../../assets/images/bg.jpg";
+import { Form } from "../../../../components/Form";
 
 export const Main = () => {
   return (
-    <Flex w='100%' justify='center'>
-        <Img w='500px' objectFit="cover" bgPosition="center" h='500px' src={ReactImg}/>
+    <Flex
+      bgImg={`${bgImg}`}
+      objectFit="cover"
+      backgroundPosition="center"
+      backgroundRepeat="no-repeat"
+      backgroundSize="cover"
+      w="100%"
+      h="100vh"
+      justify="center"
+      align="center"
+    >
+      <Form />
     </Flex>
-  )
-}
+  );
+};
