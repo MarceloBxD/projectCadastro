@@ -63,13 +63,13 @@ export const Home = () => {
         justify="center"
         align="center"
         w="350px"
-        bgColor="#161712"
+        bgColor="#DDD"
         boxShadow="6px 6px 12px #000"
         borderRadius="10px"
         height="400px"
       >
-        <Text color="#fff" fontWeight="500" fontSize="22px">
-          Login
+        <Text fontWeight="bold" color="#595FD9" fontSize="20px">
+          Quiz - PFF
         </Text>
         <FormControl gap="10px" padding="20px">
           <form
@@ -78,7 +78,7 @@ export const Home = () => {
           >
             <Input
               type="email"
-              color="#fff"
+              color="#000"
               size="sm"
               variant="flushed"
               w="300px"
@@ -89,7 +89,7 @@ export const Home = () => {
             <Flex>
               <Input
                 type={showPassword === true ? "text" : "password"}
-                color="#fff"
+                color="#000"
                 size="sm"
                 variant="flushed"
                 w="300px"
@@ -149,10 +149,10 @@ export const Home = () => {
             )}
           </form>
         </FormControl>
-        <Text color="#fff">Ainda não possui uma conta?</Text>
+        <Text color="#000">Ainda não possui uma conta?</Text>
         <Link to="/cadastro">
           <Text
-            color="#F3E8EE"
+            color="#000"
             _hover={{
               transform: "translate(5px)",
               transition: "all 1.2s ease",
@@ -162,6 +162,13 @@ export const Home = () => {
             cadastre-se
           </Text>
         </Link>
+        <a
+          href="https://www.instagram.com/programandoficafacil/?next=%2F"
+          color="#000"
+          style={{ fontSize: "12px" }}
+        >
+          @programandoficafacil
+        </a>
       </Flex>
     </Flex>
   );

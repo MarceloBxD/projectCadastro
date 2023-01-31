@@ -39,7 +39,7 @@ export const Form = () => {
         Questão {currentQuestion + 1}
       </Text>
       <Flex flexDir="column" p="10px">
-        <Text fontSize="25px" fontWeight="bold" m="0 auto">
+        <Text fontSize="22px" textAlign="center" fontWeight="bold">
           {questions[currentQuestion].pergunta}
         </Text>
         <Text m="0 auto">Dica: {questions[currentQuestion].dica}</Text>

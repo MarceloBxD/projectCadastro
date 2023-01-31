@@ -73,7 +73,7 @@ export const ShowResult = () => {
       w="100%"
       position="absolute"
       borderRadius="10px"
-      bgImg={`${bgImgResult}`}
+      bgColor="#000"
       objectFit="cover"
       backgroundPosition="center"
       backgroundRepeat="no-repeat"
@@ -136,9 +136,9 @@ export const ShowResult = () => {
             />
             <Button
               transition="all 0.2s ease-in-out"
-              bgColor="#fff"
+              bgColor="red"
               color="#000"
-              _hover={{ backgroundColor: "#000", color: "#f00" }}
+              _hover={{ backgroundColor: "#000", color: "#fff" }}
               type="submit"
             >
               Enviar avaliação

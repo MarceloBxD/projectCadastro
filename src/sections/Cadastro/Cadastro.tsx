@@ -81,7 +81,7 @@ export const Cadastro = () => {
         flexDir="column"
         align="center"
         w="350px"
-        bgColor="#161712"
+        bgColor="#DDD"
         boxShadow="6px 6px 12px #000"
         borderRadius="10px"
         height="400px"
@@ -89,11 +89,11 @@ export const Cadastro = () => {
         <Text
           mt="10px"
           mb="10px"
-          color="#FFF"
+          color="#595FD9"
           fontWeight="bold"
           fontSize="22px"
         >
-          Cadastro
+          Cadastre-se
         </Text>
         <FormControl display="flex" flexDir="column" padding="20px">
           <form
@@ -108,7 +108,7 @@ export const Cadastro = () => {
           >
             <Input
               type="text"
-              color="#FFF"
+              color="#000"
               size="sm"
               w="300px"
               variant="flushed"
@@ -118,7 +118,7 @@ export const Cadastro = () => {
             />
             <Input
               type="email"
-              color="#fff"
+              color="#000"
               size="sm"
               variant="flushed"
               w="300px"
@@ -128,7 +128,7 @@ export const Cadastro = () => {
             />
             <Input
               type="password"
-              color="#fff"
+              color="#000"
               size="sm"
               variant="flushed"
               w="300px"
@@ -138,7 +138,7 @@ export const Cadastro = () => {
             />
             <Input
               type="password"
-              color="#fff"
+              color="#000"
               size="sm"
               variant="flushed"
               value={confirmPassword}
@@ -188,7 +188,8 @@ export const Cadastro = () => {
         >
           <Link to="/">
             <Text
-              color="#F3E8EE"
+              color="#000"
+              textDecoration="underline"
               _hover={{
                 transform: "translate(5px)",
                 transition: "all 1.2s ease",

@@ -31,7 +31,7 @@ export const questions: iQuestions[] = [
     id: 4,
     pergunta: "O que é um array em programação?",
     resposta: "estrutura de dados que armazena uma coleção de elementos",
-    dica: "É um nome de usuário",
+    dica: "São usados para agrupar dados e facilitar sua manipulação.",
     opcoes: [
       "estrutura de dados que armazena uma coleção de elementos",
       "algo parecido com uma função",
